@@ -20,7 +20,8 @@ let arr = [
 ];
 
 
-//kontrol
+
+
 
 const App = () => { 
   const [lesson, setLesson] = useState(11);
