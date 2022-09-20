@@ -59,7 +59,8 @@ const App = () => {
        value={paragraf}
        onChange={(e) => setParagraf(e.target.value)} 
        
-       />
+       /> 
+       
     
       
        <Button variant="outline" onClick={click}> 
@@ -88,3 +89,5 @@ const App = () => {
 }
 
 export default App;
+
+//github deneme
