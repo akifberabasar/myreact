@@ -1,5 +1,4 @@
-import { Button, Input, Textarea, Container,Stack  } from '@mantine/core';
-
+import { Button, Input, Textarea, Container,Stack, Grid  } from '@mantine/core';
 import "./App.css";
 import CardComponent from "./components/Card";
 import { useState } from "react";
@@ -25,25 +24,24 @@ let arr = [
   },
 ];
 
-
-
-
-
 const App = () => { 
   const [title,setTitle] =  useState(""); 
   const [paragraf,setParagraf] =  useState("") 
   const [list, setList] = useState(arr);
   const click = () => {
-    console.log("butona tıklandı" , title ,paragraf);
+   
+    setTitle("");
+    setParagraf("");
+
     const copyList = () => [...list];
     list.push({
       id : 5,
-      title: "dağ 5",
-      par: "açıklama 5",
+      title,
+      par : paragraf,
     });
     setList(copyList);
   
-   };  
+  };  
    
    return  <Container>
       <h1>Kart Oluşturma Programı</h1>
@@ -60,8 +58,7 @@ const App = () => {
        onChange={(e) => setParagraf(e.target.value)} 
        
        /> 
-       
-    
+
       
        <Button variant="outline" onClick={click}> 
         Kart Oluştur
@@ -70,24 +67,23 @@ const App = () => {
       
      <h2>Kartlar</h2>
 
-      <div className="Cards">
-        {arr.map(({title, par} , i)  => (
-         <CardComponent
-         key={`index ${i}`}
-         title={title}
-         par={par}  
+      <Grid >
+        {list.map(({title, par} , i)  => (
+            <Grid.Col span={4} key={`index ${i}`}>
+              <CardComponent
          
-         index={i}
-         
-         />
-
+                title={title}
+                par={par}  
+                
+                index={i}
+                
+                />
+       
+            </Grid.Col>
+        
         ))}
-     </div>
+     </Grid>
     </Container>;
-    
-  
 }
 
 export default App;
-
-//github deneme
