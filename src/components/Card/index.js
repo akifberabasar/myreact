@@ -1,7 +1,7 @@
 
-import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, CloseButton } from '@mantine/core';
 
-const CardComponent = ({ title,par,lesson,index }) => {
+const CardComponent = ({ title,par,index, click }) => {
 return ( <Card shadow="sm" p="lg" radius="md" withBorder>
  <Card.Section>
   <Image
@@ -13,9 +13,11 @@ return ( <Card shadow="sm" p="lg" radius="md" withBorder>
 
  <Group position="apart" mt="md" mb="xs">
   <Text weight={500}>{title}</Text>
-  <Badge color="pink" variant="light">
+  {/* <Badge color="pink" variant="light">
     On Sale
-  </Badge>
+  </Badge> */}
+  <CloseButton aria-label="Close modal"  
+  onClick={click} />
  </Group>
 
  <Text size="sm" color="dimmed">
@@ -27,6 +29,5 @@ return ( <Card shadow="sm" p="lg" radius="md" withBorder>
  </Button>
  </Card>
 )};
-    
 
 export default CardComponent;
