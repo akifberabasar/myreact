@@ -1,39 +1,71 @@
 {
-  "name": "myreact",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@mantine/core": "^5.4.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+  "name": "@sinonjs/fake-timers",
+  "description": "Fake JavaScript timers",
+  "version": "8.1.0",
+  "homepage": "https://github.com/sinonjs/fake-timers",
+  "author": "Christian Johansen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sinonjs/fake-timers.git"
   },
+  "bugs": {
+    "mail": "christian@cjohansen.no",
+    "url": "https://github.com/sinonjs/fake-timers/issues"
+  },
+  "license": "BSD-3-Clause",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "lint": "eslint .",
+    "test-node": "mocha --timeout 200 test/ integration-test/ -R dot --check-leaks",
+    "test-headless": "mochify --no-detect-globals --timeout=10000",
+    "test-check-coverage": "npm run test-coverage && nyc check-coverage",
+    "test-cloud": "mochify --wd --no-detect-globals --timeout=10000",
+    "test-coverage": "nyc --all --reporter text --reporter html --reporter lcovonly npm run test-node",
+    "test": "npm run test-node && npm run test-headless",
+    "prettier:check": "prettier --check '**/*.{js,css,md}'",
+    "prettier:write": "prettier --write '**/*.{js,css,md}'",
+    "preversion": "./scripts/preversion.sh",
+    "version": "./scripts/version.sh",
+    "postversion": "./scripts/postversion.sh"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --check",
+    "*.js": "eslint"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+  "files": [
+    "src/"
+  ],
+  "devDependencies": {
+    "@sinonjs/eslint-config": "4.0.2",
+    "@sinonjs/referee-sinon": "6.0.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "3.4.1",
+    "husky": "4.2.1",
+    "jsdom": "16.5.2",
+    "lint-staged": "10.0.7",
+    "mocha": "8.3.2",
+    "mochify": "7.0.0",
+    "nyc": "14.1.1",
+    "prettier": "2.2.1"
+  },
+  "main": "./src/fake-timers-src.js",
+  "dependencies": {
+    "@sinonjs/commons": "^1.7.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "nyc": {
+    "branches": 85,
+    "lines": 92,
+    "functions": 92,
+    "statements": 92,
+    "exclude": [
+      "**/*-test.js",
+      "coverage/**",
+      "types/**",
+      "fake-timers.js"
     ]
   }
 }
