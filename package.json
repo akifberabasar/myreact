@@ -14,6 +14,7 @@
   },
   "license": "BSD-3-Clause",
   "scripts": {
+    "start": "react-scripts start",
     "lint": "eslint .",
     "test-node": "mocha --timeout 200 test/ integration-test/ -R dot --check-leaks",
     "test-headless": "mochify --no-detect-globals --timeout=10000",
@@ -66,6 +67,18 @@
       "coverage/**",
       "types/**",
       "fake-timers.js"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }
